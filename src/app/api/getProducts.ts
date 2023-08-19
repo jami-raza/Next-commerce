@@ -8,6 +8,8 @@ export const getProducts = cache(async () => {
             _id, name, shortdescription, image, price, category-> 
           }`)
 
+          console.log(products, "API")
+
           return products;
         
     } catch (error) {
