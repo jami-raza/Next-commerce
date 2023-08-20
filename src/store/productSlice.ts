@@ -6,7 +6,8 @@ import {
   import type { RootState } from './store';
 import { getProducts } from '@/app/api/getProducts';
 import { IProduct } from '@/types/product.type';
-  
+import { groq } from 'next-sanity'
+import client from '../../client';
   // here we are typing the types for the state
   export type KanyeState = {
     data: IProduct[]
@@ -22,7 +23,10 @@ import { IProduct } from '@/types/product.type';
   
   // This action is what we will call using the dispatch in order to trigger the API call.
   export const getAsyncProducts = createAsyncThunk('products/fetchProducts', async () => {
-    const response = await getProducts();
+    const response = await client.fetch(groq`*[_type == 'product']{
+      _id, name, shortdescription, image, price, category-> 
+    }`)
+  //   const response = 
   console.log(response, "Response")
     return response;
   });
@@ -37,7 +41,7 @@ import { IProduct } from '@/types/product.type';
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(getAsyncProducts.fulfilled, (state, action) => {
           // Add user to the state array
-          state.data.push(action.payload)
+          state.data = action.payload
           state.pending = false
           state.error = false
         })

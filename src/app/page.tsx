@@ -25,6 +25,11 @@ const {
   error,
 } = useAppSelector(selectKanye);
 
+useEffect(() => {
+  dispatch(getAsyncProducts())
+}, [])
+
+
 console.log(error, "error")
 console.log(pending, "pending")
 console.log(data, "data")
@@ -32,7 +37,6 @@ console.log(data, "data")
   // console.log(products);
   return (
   <main className="container">
-<h2>Counter: {count}</h2>
     <div className="banner-img">
 
     </div>
@@ -47,10 +51,8 @@ console.log(data, "data")
         </div>
     ))} */}
   </div>
-  <button onClick={() => dispatch(getAsyncProducts())} disabled={pending}>
-        Generate Kanye Quote
-      </button>
-  {/* <div className="shell">
+
+  <div className="shell">
   <div className="container">
     <div className="row">
     {pending && <p>Loading...</p>}
@@ -78,7 +80,7 @@ console.log(data, "data")
       ))}
       </div>
       </div>
-      </div> */}
+      </div>
   </main>
   );
 }

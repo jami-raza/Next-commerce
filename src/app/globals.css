@@ -123,6 +123,7 @@
   height: 205px;
   transition: all 0.2s ease-in-out;
   border-radius:6px;
+  object-fit: cover;
 }
 .wsk-cp-product:hover .wsk-cp-img{
   top:-40px;
