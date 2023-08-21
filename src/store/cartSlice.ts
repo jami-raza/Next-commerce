@@ -3,10 +3,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 type cartProducts = {
-    product_id: number,
-    qty:number,
-    price:number,
-    title: string
+    product_id: string,
+    qty: number,
+    price: number,
+    title: string,
+    subTotal: number
 }
 
 
@@ -14,31 +15,51 @@ type cartProducts = {
 type CartState = {
     products: cartProducts[],
     finalTotal: number
-  };
+};
 
-const initialState:CartState = {
+const initialState: CartState = {
     products: [],
     finalTotal: 0
-} 
+}   
 
-  export const cart = createSlice({
+export const cart = createSlice({
     name: "cart",
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<cartProducts>) => {
-            state.products.push({
-                price: action.payload.price,
-                product_id: action.payload.product_id,
-                qty: action.payload.qty,
-                title: action.payload.title
-            })
+            const productIndex = state.products.findIndex(il => il.product_id == action.payload.product_id)
+            if (productIndex >= 0) {
+                state.products[productIndex].qty += 1
+                state.products[productIndex].subTotal = state.products[productIndex].qty * state.products[productIndex].price
+            } else {
+                state.products.push({
+                    price: action.payload.price,
+                    product_id: action.payload.product_id,
+                    qty: action.payload.qty,
+                    title: action.payload.title,
+                    subTotal: action.payload.subTotal
+                })
+            }
+
+
+            state.finalTotal = state.products.reduce((parsalsum, a) => parsalsum + a.subTotal, 0)
+
+        },
+        removeToCart: (state, action: PayloadAction<string>) => {
+            const productIndex = state.products.findIndex(il => il.product_id == action.payload)
+            if(productIndex >= 0){
+                let pr = state.products 
+                pr.splice(productIndex, 1)
+                state.products = pr
+            }
         }
     }
 
-  })
+})
 
-  export const {
-   addToCart
-  } = cart.actions;
-  export default cart.reducer;
+export const {
+    addToCart,
+    removeToCart
+} = cart.actions;
+export default cart.reducer;
 
