@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useAppSelector } from "@/store/hooks";
 import PhoneInput from 'react-phone-number-input'
-import countryList from 'react-select-country-list'
+import ReactFlagsSelect from "react-flags-select";
 import {
     Select,
     SelectContent,
@@ -103,12 +103,7 @@ import { useMemo, useState } from "react";
 export default function Checkout(){
   const [phoneValue, setPhoneValue] = useState<any>()
 
-  const [countryValue, setCountryValue] = useState<string>('')
-  const options = useMemo(() => countryList().getData(), [])
-
-  const changeHandler = (countryValue:string) => {
-    setCountryValue(countryValue)
-  }
+  const [selected, setSelected] = useState("");
 
     const formSchema = z.object({
         username: z.string().min(2, {
@@ -123,12 +118,12 @@ export default function Checkout(){
         city: z.string().min(2, {
           message: "must be at least 2 characters.",
         }),
-        country: z.string().min(2, {
-          message: "must be at least 2 characters.",
-        }),
-        phone: z.string().min(2,{
-          message: "Fill this field",
-        }),
+        // country: z.string().min(2, {
+        //   message: "must be at least 2 characters.",
+        // }),
+        // phone: z.string().min(2,{
+        //   message: "Fill this field",
+        // }),
         zipCode: z.string().optional(),
       })
     const form = useForm<z.infer<typeof formSchema>>({
@@ -138,8 +133,8 @@ export default function Checkout(){
           email: "",
           address: "",
           city: "",
-          country: "",
-          phone: "",
+          // country: "",
+          // phone: "",
           zipCode: "",
 
         },
@@ -214,41 +209,19 @@ export default function Checkout(){
               <FormLabel>City</FormLabel>
               
               <FormControl>
-              <Select>      
-<SelectTrigger >
-<Input type="text" placeholder="City" {...field} />
-</SelectTrigger>
-<SelectContent>
-<SelectItem value="light">Sindh</SelectItem>
-<SelectItem value="dark">Punjab</SelectItem>
-<SelectItem value="system">Blochistan</SelectItem>
-<SelectItem value="system">KPK</SelectItem>
-</SelectContent>
-</Select>
+              <Input type="text" placeholder="City" {...field}/>
+             
                
               </FormControl>
               <FormMessage />
               </FormItem>
               )}
         />
-        <FormField
-         control={form.control}
-         name="country"
-         render={({ field }) => (
-          <FormItem>
-              <FormLabel>Country</FormLabel>
-              <FormControl>
-              <Select1 option={options}  value={countryValue} onChange={changeHandler}>      
-<SelectTrigger >
-<Input type="text" placeholder="Country" {...field} />
-</SelectTrigger>
-</Select1>
-                {/* <Input type="text" placeholder="Country" {...field} /> */}
-              </FormControl>
-              <FormMessage />
-              </FormItem>
-              )}
-        />
+        {/* <ReactFlagsSelect
+    selected={selected}
+    onSelect={(code) => setSelected(code)}
+    
+  /> */}
         <FormField
          control={form.control}
          name="zipCode"
@@ -276,10 +249,10 @@ export default function Checkout(){
               )}
         /> */}
 
-<PhoneInput
+{/* <PhoneInput
       placeholder="Enter phone number"
       value={phoneValue}
-      onChange={(e) => setPhoneValue(e)}/>
+      onChange={(e) => setPhoneValue(e)}/> */}
        
         <Button type="submit">Submit</Button>
         <div className="w-fit">
