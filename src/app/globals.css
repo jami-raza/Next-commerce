@@ -97,14 +97,13 @@
   .nav-menu{
     width: 50%;
   }
-  .banner-img{
+  /* .banner-img{
     height: 100%;
     max-height: 600px;
     background-image: url('https://www.definitelycurry.com/wp-content/uploads/2019/07/andamen-ss18-1224-edit.jpg');
     height: 600px;
-    background-position: center center;
     background-size: cover;
-  }
+  } */
 }
 
 
