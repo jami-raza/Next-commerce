@@ -18,3 +18,19 @@ export const getProducts = cache(async () => {
 
 
 })
+
+export const getProduct = cache(async (id:string) => {
+    try {
+        const products = await client.fetch(groq`*[_type == "product" && _id == "${id}"]`)
+
+          console.log(products, "API")
+
+          return products;
+        
+    } catch (error) {
+        console.error("Error fetching product:", error);
+    throw error;
+    }
+
+
+})

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addToCart } from "@/store/cartSlice";
+import Link from "next/link";
 // import { cartProducts } from "@/store/cartSlice";
 
 type IProductCard = {
@@ -44,16 +45,21 @@ export function ProductCard(prop:IProductCard) {
       }
 
     return (
-        <Card className="w-[100%] max-w-[23%] mt-4 max-md:max-w-[48%] max-sm:max-w-[100%]">
+      <Card className="w-[100%] max-w-[23%] mt-4 max-md:max-w-[48%] max-sm:max-w-[100%]">
+          <Link href={`/product/${prop._id}`} passHref>
           <CardHeader className="p-0">
              <img src={prop.image} alt="Product" className="h-80 w-[100%] object-cover rounded-t-lg" />
           </CardHeader>
+              </Link>
           
           <CardContent>
+          <Link href='/product' passHref>
+
           <CardTitle className="line-clamp-1 mb-2">
 
 <span className="text-black  uppercase text-xs">{prop.name}</span>
 </CardTitle>
+          </Link>
 <CardDescription className="line-clamp-3 mb-2">
 {prop.shortdescription}
 {/* <p className="text-lg font-bold text-black truncate block capitalize"></p> */}
