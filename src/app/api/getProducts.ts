@@ -21,7 +21,11 @@ export const getProducts = cache(async () => {
 
 export const getProduct = cache(async (id:string) => {
     try {
-        const products = await client.fetch(groq`*[_type == "product" && _id == "${id}"]`)
+        const products = await client.fetch(groq`*[_type == "product" && _id == "${id}"]{
+            
+                _id, name, shortdescription, image, price, description, category-> 
+              
+        }`)
 
           console.log(products, "API")
 

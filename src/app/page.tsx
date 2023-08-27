@@ -61,7 +61,7 @@ export default function Home() {
       {/* Product Card */}
 
 
-      <div className="flex gap-[2%] flex-wrap">
+      <div className="flex gap-[2%] flex-wrap mb-16">
         {pending && <p>Loading...</p>}
         {data && data.map((product: IProduct) => (
           // <div className="col-md-3" key={product._id}>
