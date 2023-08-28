@@ -65,6 +65,7 @@ export default function Product(params: any) {
     }
   }
 
+ 
   return (
     <div>
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 mt-6">
@@ -87,7 +88,7 @@ export default function Product(params: any) {
               <div className="flex items-center space-x-4 my-4">
                 <div>
                   <div className="rounded-lg bg-gray-100 flex py-2 px-3">
-                    <span className="text-indigo-400 mr-1 mt-1">$ {productData.price}</span>
+                    <span className="text-indigo-400 mr-1 mt-1">Rs. {productData.price}</span>
                     <span className="font-bold text-indigo-600 text-3xl"></span>
                   </div>
                 </div>
@@ -111,7 +112,7 @@ export default function Product(params: any) {
             </select>
 
             <svg className="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
             </svg>
           </div> */}
 
@@ -138,7 +139,7 @@ export default function Product(params: any) {
                     findCartQty(productData._id)?.qty 
                     
                     : qty
-                    } />
+                    } readOnly/>
                   <button onClick={findCartQty(productData._id) != null ? () => {dispatch(plusQanity(productData._id))
                   
                   setQty(qty+1)
