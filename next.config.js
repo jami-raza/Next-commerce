@@ -10,6 +10,10 @@ const nextConfig = {
           },
           {
             hostname: 'static-01.daraz.pk',
+            
+          },
+          {
+            hostname: 'cdn.sanity.io',
           }
         ],
       },

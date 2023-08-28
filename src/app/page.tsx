@@ -38,9 +38,9 @@ export default function Home() {
     dispatch(getAsyncProducts())
     dispatch(getAsyncCategory())
   }, [])
-
-  console.log(categoryReq.data, "Categories")
-
+  const category = categoryReq.data
+  console.log(category, "Categories")
+  
 
   console.log(error, "error")
   console.log(pending, "pending")
@@ -63,6 +63,21 @@ export default function Home() {
           <Image src='/img/banner2.jpg' alt="banner-img" width={1000} height={1000} />
         </div>
       </div>
+
+          {/* Category */}
+              <div className="mb-16">
+                <h1 className="text-center text-4xl font-semibold mb-8 ">Category</h1>
+                <div className="flex justify-center items-center  max-sm:flex-col">
+               {category.map(cg=>(
+
+                 <div className="m-6" key={cg._id}>
+                  <Image src={cg.imageUrl} alt="categoryImage" width={0} height={0} sizes="500px" style={{width:"100%",maxWidth:"250px", height: "250px", borderRadius: "100%"}}/>
+                  <h3 className="text-center mt-2 text-lg font-semibold">{cg.name}</h3>
+                 </div>
+               )
+               )}
+            </div>
+              </div>
 
       {/* Product Card */}
 
