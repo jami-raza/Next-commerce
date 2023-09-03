@@ -65,7 +65,7 @@ export default function Product(params: any) {
     }
   }
 
- 
+//  check
   return (
     <div>
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 mt-6">
