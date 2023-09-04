@@ -6,11 +6,13 @@ import {
 import counterReducer from "./counterSlice";
 import cartReducer from "./cartSlice";
 import productReducer from "./productSlice";
+import categoryReducer from "./categorySlice";
 export const store = configureStore({
   reducer: {
     counterReducer,
     cartReducer,
-    productReducer
+    productReducer,
+    categoryReducer
 
   },
   devTools: process.env.NODE_ENV !== "production",
