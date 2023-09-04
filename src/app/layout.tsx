@@ -3,6 +3,7 @@ import Header from "../components/header/header";
 import 'react-phone-number-input/style.css'
 
 import { Providers } from "@/store/provider";
+import Footer from "@/components/footer";
 
 
 
@@ -14,6 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <Header />
         {children}
         </Providers>
+        <Footer/>
       </body>
     </html>
   );

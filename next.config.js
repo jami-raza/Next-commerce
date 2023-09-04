@@ -8,6 +8,9 @@ const nextConfig = {
             port: '',
             pathname: '/account123/**',
           },
+          {
+            hostname: 'static-01.daraz.pk',
+          }
         ],
       },
 }

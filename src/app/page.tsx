@@ -13,6 +13,7 @@ import './globals.css'
 import { IProduct } from "@/types/product.type";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/card";
+import { getAsyncCategory, selectcategory } from "@/store/categorySlice";
 
 
 
@@ -31,9 +32,14 @@ export default function Home() {
     error,
   } = useAppSelector(selectKanye);
 
+  const categoryReq = useAppSelector(selectcategory);
+
   useEffect(() => {
     dispatch(getAsyncProducts())
+    dispatch(getAsyncCategory())
   }, [])
+
+  console.log(categoryReq.data, "Categories")
 
 
   console.log(error, "error")
@@ -61,7 +67,7 @@ export default function Home() {
       {/* Product Card */}
 
 
-      <div className="flex gap-[2%] flex-wrap">
+      <div className="flex gap-[2%] flex-wrap mb-16">
         {pending && <p>Loading...</p>}
         {data && data.map((product: IProduct) => (
           // <div className="col-md-3" key={product._id}>
@@ -99,7 +105,7 @@ export default function Home() {
           //     </div>
           //   </div>
           // </div>
-          <ProductCard _id={product._id} name={product.name} shortdescription={product.shortdescription} image={product.image} price={product.price} category={product.category}
+          <ProductCard key={product._id} _id={product._id} name={product.name} shortdescription={product.shortdescription} image={product.image} price={product.price} category={product.category}
           // addToCart={dispatch(addToCart({
           //                 price: product.price,
           //                           product_id: product._id,
