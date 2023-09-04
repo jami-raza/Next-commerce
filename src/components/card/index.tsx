@@ -9,7 +9,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { cartProducts } from "@/store/cartSlice";
 
 type IProductCard = {
     _id: string;
@@ -52,7 +51,7 @@ export function ProductCard() {
 
           </CardContent>
           <CardFooter className="flex justify-between">
-            <Button variant="outline">Cancel</Button>
+            {/* <Button variant="outline">Cancel</Button> */}
             <Button>Deploy</Button>
           </CardFooter>
         </Card>

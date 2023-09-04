@@ -61,6 +61,7 @@ export default function Home() {
           <div className="row">
             {pending && <p>Loading...</p>}
             {data && data.map((product: IProduct) => (
+              <></>
               // <div className="col-md-3" key={product._id}>
               //   <div className="wsk-cp-product">
               //     <div className="wsk-cp-img">
@@ -96,13 +97,13 @@ export default function Home() {
               //     </div>
               //   </div>
               // </div>
-              <ProductCard _id={product._id} name={product.name} shortdescription={product.shortdescription} image={product.image} price={product.price} addToCart={dispatch(addToCart({
-                price: product.price,
-                          product_id: product._id,
-                          qty: 1,
-                          title: product.name,
-                          subTotal: product.price
-              }))} removeToCart={dispatch(removeToCart(product._id))} findQty={findQty(product._id)}/>
+              // <ProductCard _id={product._id} name={product.name} shortdescription={product.shortdescription} image={product.image} price={product.price} addToCart={dispatch(addToCart({
+              //   price: product.price,
+              //             product_id: product._id,
+              //             qty: 1,
+              //             title: product.name,
+              //             subTotal: product.price
+              // }))} removeToCart={dispatch(removeToCart(product._id))} findQty={findQty(product._id)}/>
             ))}
           </div>
         </div>
